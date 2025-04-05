@@ -41,7 +41,8 @@ def construct(arr):
             st.pop()
     return root;
 
-
+# M1
+# ===
     
 def size(node):
     if node == None:
@@ -72,6 +73,62 @@ def height(node):
     lf_ht = height(node.left)
     rt_ht = height(node.right)
     return max(lf_ht, rt_ht) + 1
+
+
+# M2
+# ===
+
+class SumSolution:
+    
+    def __init__(self):
+        self.sum = 0
+    
+    def sumBT(self, node) -> int:
+        # code here
+        self.preorder(node)
+        return self.sum
+        
+    def preorder(self, node):
+        if node == None:
+            return
+        self.sum += node.data
+        self.preorder(node.left)
+        self.preorder(node.right)
+
+class SizeSolution:
+    
+    def __init__(self):
+        self.size = 0
+    
+    def getSize(self, node) -> int:
+        # code here
+        self.preorder(node)
+        return self.size
+        
+    def preorder(self, node):
+        if node == None:
+            return
+        self.size += 1
+        self.preorder(node.left)
+        self.preorder(node.right)
+
+class HeightSolution:
+    # max depth is same as height of the tree
+    def __init__(self):
+        self.height = 0
+
+    def maxDepth(self, root) -> int:
+        self.recursion(root, 1)
+        return self.height
+        
+    def preorder(self, root, cur_height):
+        if root == None:
+            return None
+
+        self.height = max(self.height, cur_height)
+        # print(self.height)
+        self.preorder(root.left, cur_height + 1)
+        self.preorder(root.right, cur_height + 1)
 
 n = int(input())
 st = input()
