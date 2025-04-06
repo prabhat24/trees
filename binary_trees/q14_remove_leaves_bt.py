@@ -38,10 +38,10 @@ def removeLeaves(node):
     node.left = lf
     node.right = rf
     return node
-  
+
 if __name__ == '__main__':
 
-    n = int(input())
+    # n = int(input())
     s = input()
     l = list(s.split(" "))
     arr = []
@@ -58,3 +58,18 @@ if __name__ == '__main__':
     root = construct(arr)
     root = removeLeaves(root)
     display(root)
+
+
+# input 1
+# ========
+# 10 20 n n 40 50 n 30 60 n 70 n n n n 
+# output 1
+# =======    
+# check if leaf nodes are removed
+    
+# input 2
+# =======   
+# 1 2 4 n n 5 n n 3 6 n n n 
+# output 2
+# =======   
+# check if leaf nodes are removed
