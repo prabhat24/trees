@@ -40,10 +40,8 @@ def printSingleChildNodes(node,parent):
     
     printSingleChildNodes(node.left,node)
     printSingleChildNodes(node.right,node)
-  
-if __name__ == '__main__':
 
-    n = int(input())
+if __name__ == '__main__':
     s = input()
     l = list(s.split(" "))
     arr = []
@@ -58,4 +56,25 @@ if __name__ == '__main__':
             arr.append(int(l[i]))
              
     root = construct(arr)
-    printSingleChildNodes(root, None);
+    display(root)
+    printSingleChildNodes(root, None)
+
+# node input construction is based on preorder traversal
+
+# input 1
+# ========
+# 10 20 n n 40 50 n 30 60 n 70 n n n n 
+# output 1
+# =======    
+# 50
+# 30
+# 60
+# 70
+    
+# input 2
+# 1 2 4 n n 5 n n 3 6 n n n 
+
+# output 2
+# 6    
+
+
