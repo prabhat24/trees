@@ -40,57 +40,85 @@ def construct(arr):
                 top.node.right=None;
         else:
             st.pop()
-    return root;
+    return root
     
+
+class Solution():
     
+    def preOrder(self, root):
+        # code here
+        
+        st = deque()
+        st.append([root, 1])
+        
+        lst = []
+        while st:
+            top_ele, step = st.pop()
+            
+            if step == 1:
+                lst.append(top_ele.data)
+                st.append([top_ele, step + 1])
+                if top_ele.left:
+                    st.append([top_ele.left, 1])
+                
+            if step == 2:
+                st.append([top_ele, step + 1])
+                if top_ele.right:
+                    st.append([top_ele.right, 1])
+                    
+            if step == 3:
+                continue
+        return lst
     
-def iterativePrePostInTraversal(node):
+    def postOrder(self,node):
+        # code here
+        lst = []
+        
+        st = deque()
+        
+        st.append([node, 1])
+        
+        while st:
+            ele, step = st.pop()
+            
+            if step == 1:
+                st.append([ele, 2])
+                if ele.left:
+                    st.append([ele.left, 1])
+            
+            if step == 2:
+                st.append([ele, 3])
+                if ele.right:
+                    st.append([ele.right, 1])
+                
+            if step == 3:
+                lst.append(ele.data)
+        return lst
 
-    st = deque()
-    st.append([node, -1])
+    def inOrder(self, root):
+        # code here
+        st = deque()
+        st.append([root, 1])
+        
+        lst = []
+        while st:
+            ele, step = st.pop()
+            
+            if step == 1:
+                st.append([ele, step + 1])
+                if ele.left:
+                    st.append([ele.left, 1])
+            
+            if step == 2:
+                lst.append(ele.data)
+                st.append([ele, step + 1])
+                if ele.right:
+                    st.append([ele.right, 1])
+                    
+            if step == 3:
+                continue
+        return lst
 
-    preorder = [] 
-    inorder = []
-    postorder = []
-    while len(st):
-        try:
-            n, state = st.pop()
-            if state == -1:
-                st.append([n, state+1])
-                preorder.append(n.data)
-                continue
-            elif state == 0:
-                st.append([n, state+1])
-                if n.left:
-                    st.append([n.left, -1])
-                continue
-            elif state == 1:
-                st.append([n, state+1])
-                inorder.append(n.data)
-                continue
-            elif state == 2:
-                st.append([n, state+1])
-                if n.right:
-                    st.append([n.right, -1])
-                continue
-            elif state == 3:
-                postorder.append(n.data)
-                continue
-        except Exception as e:
-            print(e)
-    for i in preorder:
-        print(i, end=" ")
-    print()
-    for i in inorder:
-        print(i, end=" ")
-    print()
-    for i in postorder:
-        print(i, end=" ")
-    print()
-
-
-
-    
     
 
 n = int(input())
@@ -100,4 +128,8 @@ arr = list(map(int,st.replace("n","-1").split(" ")));
 
 
 root = construct(arr)
-iterativePrePostInTraversal(root)
+sol = Solution()
+
+print(sol.preOrder())
+print(sol.inOrder())
+print(sol.postOrder())
